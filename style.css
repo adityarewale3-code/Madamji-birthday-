@@ -70,11 +70,9 @@ body{
   width:100%;
   max-width:900px;
 
-  background:
-  rgba(255,255,255,.55);
+  background: rgba(255,255,255,.95);
 
-  backdrop-filter:
-  blur(20px);
+  border: 2px solid rgba(255,255,255,.55);
 
   border:
   2px solid
