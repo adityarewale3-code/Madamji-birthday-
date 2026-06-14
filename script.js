@@ -391,23 +391,116 @@ function showExcited() {
   }
 
   // Desktop
-  noBtn.addEventListener(
-    "mouseenter",
-    moveButton
+```javascript id="r6x1nk"
+// Screen 3
+function showExcited() {
+
+  noAttempts = 0;
+
+  app.innerHTML = `
+  <div class="slide" style="position:relative; min-height:500px;">
+
+    <h1>
+    😈 Are you excited to see
+    what's waiting for you?
+    </h1>
+
+    <img
+    src="assets/excited.gif"
+    class="main-img">
+
+    <button onclick="showQuiz()">
+    YES 😍
+    </button>
+
+    <button
+    id="noBtn"
+    style="
+      position:absolute;
+      left:55%;
+      top:75%;
+    ">
+    NO 🙄
+    </button>
+
+    <p
+    id="attemptText"
+    style="
+    margin-top:40px;
+    color:#ffb3c7;
+    font-weight:bold;
+    ">
+    </p>
+
+  </div>
+  `;
+
+  const noBtn =
+  document.getElementById(
+  "noBtn"
   );
 
-  // Mobile
+  function moveNoButton(){
+
+    noAttempts++;
+
+    const container =
+    document.querySelector(
+    ".slide"
+    );
+
+    const rect =
+    container.getBoundingClientRect();
+
+    const btnWidth = 120;
+    const btnHeight = 50;
+
+    const randomX =
+    Math.random() *
+    (rect.width - btnWidth);
+
+    const randomY =
+    180 +
+    Math.random() *
+    (rect.height - 250);
+
+    noBtn.style.left =
+    randomX + "px";
+
+    noBtn.style.top =
+    randomY + "px";
+
+    if(noAttempts >= 5){
+
+      document
+      .getElementById(
+      "attemptText"
+      )
+      .innerHTML =
+      "😂 Stop trying to click NO!";
+
+    }
+  }
+
+  // Desktop hover
+  noBtn.addEventListener(
+    "mouseenter",
+    moveNoButton
+  );
+
+  // Mobile touch
   noBtn.addEventListener(
     "touchstart",
-    (e)=>{
+    function(e){
+
       e.preventDefault();
-      moveButton();
+      moveNoButton();
+
     }
   );
 
 }
 ```
-
 
 // Screen 4
 function showQuiz() {
