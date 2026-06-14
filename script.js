@@ -215,7 +215,7 @@ function checkDate() {
       </h1>
 
       <img
-      src="assets/cute.jpg"
+      src="assets/correct.gif"
       class="main-img">
 
       <button
@@ -311,6 +311,7 @@ function showNoAnswer() {
 }
 
 // Screen 3
+```javascript
 function showExcited() {
 
   noAttempts = 0;
@@ -334,12 +335,12 @@ function showExcited() {
     </button>
 
     <button
-    id="noBtn">
+    id="noBtn"
+    style="position:absolute;">
     NO 🙄
     </button>
 
-    <p id="attemptText">
-    </p>
+    <p id="attemptText"></p>
 
   </div>
   `;
@@ -349,26 +350,35 @@ function showExcited() {
   "noBtn"
   );
 
-  noBtn.addEventListener(
-  "mouseover",
-  () => {
+  // Starting position
+  noBtn.style.left = "50%";
+  noBtn.style.top = "75%";
+
+  function moveButton() {
 
     noAttempts++;
 
-    noBtn.style.position =
-    "absolute";
+    // Random screen position
+    const maxX =
+    window.innerWidth - 150;
+
+    const maxY =
+    window.innerHeight - 100;
+
+    const randomX =
+    Math.random() * maxX;
+
+    const randomY =
+    Math.random() * maxY;
 
     noBtn.style.left =
-    Math.random() * 70
-    + "%";
+    randomX + "px";
 
     noBtn.style.top =
-    Math.random() * 70
-    + "%";
+    randomY + "px";
 
-    if (
-      noAttempts >= 5
-    ) {
+    // Show message after 5 tries
+    if(noAttempts >= 5){
 
       document
       .getElementById(
@@ -378,9 +388,26 @@ function showExcited() {
       "😂 Stop trying to click NO!";
 
     }
+  }
 
-  });
+  // Desktop
+  noBtn.addEventListener(
+    "mouseenter",
+    moveButton
+  );
+
+  // Mobile
+  noBtn.addEventListener(
+    "touchstart",
+    (e)=>{
+      e.preventDefault();
+      moveButton();
+    }
+  );
+
 }
+```
+
 
 // Screen 4
 function showQuiz() {
